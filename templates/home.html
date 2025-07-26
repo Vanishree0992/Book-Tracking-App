@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center mt-5">
+   <h1>Welcome to BookTracker!</h1>
+   <a href="{{ url_for('login') }}" class="btn btn-primary">Log In</a>
+   <a href="{{ url_for('register') }}" class="btn btn-secondary ms-2">Register</a>
+</div>
+{% endblock %}

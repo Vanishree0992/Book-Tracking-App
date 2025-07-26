@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}My Library{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">📚 My Library</h2>
+
+{% if books %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for book in books %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                {% if book.cover_url %}
+                    <img src="{{ book.cover_url }}" class="card-img-top" alt="{{ book.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ book.status }}</p>
+                    <a href="{{ url_for('view_book', book_id=book.id) }}" class="btn btn-sm btn-outline-primary">Details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-muted">You haven't added any books yet. Start by <a href="{{ url_for('add_book') }}">adding one</a>!</p>
+{% endif %}
+{% endblock %}
